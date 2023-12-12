@@ -1,0 +1,107 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model AciSozluk.Models.Post
+@inject UserManager<AciSozlukUser> UserManager
+
+@{
+    ViewData["Title"] = "Detaylar sayfası";
+}
+
+<div id="main">
+    <!-- Post -->
+    <article class="post">
+        <header>
+            <div class="title">
+                <h2>@Model.Title</h2>
+                @if (ViewBag.CurrentUserId == Model.AciSozlukUserId || ViewBag.IsAdmin)
+                {
+                    <div style="text-align:right;"><a asp-action="DeletePost" asp-controller="Posts" asp-route-id="@Model.Id">Gönderiyi sil</a></div>
+                }
+            </div>
+            <div class="meta">
+                <time class="published" datetime="@Model.CreateDate">@Model.CreateDate</time>
+                <span class="name">@Model.AciSozlukUser.Name @Model.AciSozlukUser.Surname</span><img style="width:50px;height:50px;border-radius:50%;" src="~/uploads/@Model.AciSozlukUser.PhotoUrl" alt="" />
+            </div>
+        </header>
+        <span class="image featured"><img style="width:350px!important;height:auto;margin:0 auto;" src="~/uploads/@Model.PhotoUrl" alt="" /></span>
+        <h6>Yorumlar</h6>
+        <hr />
+        @if (Model.Comments != null && Model.Comments.Count() > 0)
+        {
+            foreach (var comment in Model.Comments)
+            {
+                <p>
+                    @comment.Content
+                </p>
+                   <p style="text-align: right;margin-bottom:0;">
+                    @comment.AciSozlukUserName 
+                </p>
+                <p style="text-align: right;height:20px;">
+                    @comment.CreateDate
+                </p>
+                
+                
+                @if (ViewBag.CurrentUserId == comment.AciSozlukUserId || ViewBag.IsAdmin)
+                {
+                    <p style="text-align: right;height:20px;">
+                        <a asp-action="DeleteComment" asp-controller="Comments" asp-route-id="@comment.Id">Yorumu sil</a>
+                    </p>
+                }
+                <p style="text-align: center;">
+                    @if (comment.Likes != null && comment.Likes.Count() > 0)
+                    {
+                        if (comment.Likes.Count() > 1)
+                        {
+                            <a href="/Comments/LikeComment/@comment.Id">
+                                <i class="fa fa-heart"></i> @comment.Likes.Count() Kişi şukuladı.
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="/Comments/LikeComment/@comment.Id">
+                                <i class="fa fa-heart"></i> @comment.Likes.Count() Kişi şukuladı.
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <a href="/Comments/LikeComment/@comment.Id">
+                            <i class="fa fa-heart"></i> Kimse şukulamadı. Şimdi şukula.
+                        </a>
+                    }
+
+                </p>
+                <hr />
+            }
+        }
+        else
+        {
+            <p>
+                Daha yorum yok.
+            </p>
+        }
+        <p>
+            <a asp-area="" asp-controller="Comments" asp-action="Create" asp-route-id="@Model.Id" class="button">Yeni yorum yap</a>
+        </p>
+        <footer>
+            <ul class="stats">
+                <li><a asp-area="" asp-controller="PostGroups" asp-action="PostList" asp-route-id="@Model.PostGroup.Name">@Model.PostGroup.Name</a></li
+                @if (Model.Comments != null && Model.Comments.Count() > 0)
+                {
+                    <li style="font-size: 13px;">
+                        <a href="#" class="icon fa-comment"> @Model.Comments.Count() </a>
+                    </li>
+                }
+                else
+                {
+                    <li style="font-size: 13px;">
+                        <a href="#" class="icon fa-comment"> 0 </a>
+                    </li>
+                }
+            </ul>
+        </footer>
+    </article>
+
+</div>
+
+
+

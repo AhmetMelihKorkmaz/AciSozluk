@@ -1,0 +1,38 @@
+﻿@model AciSozluk.Models.Post
+
+@{
+    ViewData["Title"] = "";
+}
+<div id="main">
+    <h1>Yeni gönderi kısmı </h1>
+
+    <h4>İnsanlarla etkileşime girebileceğin gönderi aç.</h4>
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="Create" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="Title" class="control-label">Başlık</label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PostGroupId" class="control-label">Kategori</label>
+                    <select asp-for="PostGroupId" class="form-control" asp-items="ViewBag.PostGroupId"></select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label"> Fotoğraf ekle </label>
+                    <input type="file" id="FileUrl" name="FileUrl" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Ekle" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,20 @@
+﻿@model List<AciSozlukUser>
+@{
+    ViewData["Title"] = "Giris Paneli";
+}
+
+<table>
+    <thead>
+        <th>Email</th>
+        <th></th>
+    </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+            <tr>
+                <td>@user.Email</td>
+                <td><a asp-controller="UserManagement" asp-action="MakeAdmin" asp-route-id="@user.Id">Admin yap</a> | <a asp-controller="UserManagement" asp-action="MakeAuthor" asp-route-id="@user.Id">Yazar yap</a></td>
+            </tr>
+            }
+        </tbody>
+</table>

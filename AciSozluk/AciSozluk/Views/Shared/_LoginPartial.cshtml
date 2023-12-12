@@ -1,0 +1,27 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<AciSozlukUser> SignInManager
+@inject UserManager<AciSozlukUser> UserManager
+
+<ul class="actions stacked">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        
+        <li>
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <p> Hosgeldin, @UserManager.FindByNameAsync(UserManager.GetUserName(User)).Result.Name @UserManager.FindByNameAsync(UserManager.GetUserName(User)).Result.Surname </p>
+                <button type="submit" class="button large fit">Kaciyor musun?</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li>
+            <a class="button large fit" asp-area="Identity" asp-page="/Account/Register">Yazar ol</a>
+        </li>
+        <li>
+            <a class="button large fit" asp-area="Identity" asp-page="/Account/Login">Yazar olarak gir</a>
+        </li>
+    }
+</ul>
+
+

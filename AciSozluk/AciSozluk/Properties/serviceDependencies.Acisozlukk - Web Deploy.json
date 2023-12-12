@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/acisozlukk/databases/Acisozlukk_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:Server=tcp:acisozlukk.database.windows.net,1433;InitialCatalog=Acisozlukk_db;PersistSecurityInfo=False;UserID=adem;Password={your_password};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;ConnectionTimeout=30;"
+    }
+  }
+}

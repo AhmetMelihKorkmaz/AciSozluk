@@ -1,0 +1,69 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <title>@ViewData["Title"] - Acı Sözlük</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="~/css/theme/main.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="icon" type="image/x-icon" href="/aaaa.ico">
+</head>
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Header -->
+        <header id="header">
+            <h1><a asp-area="" asp-controller="Home" asp-action="Index">Acı Sözlük</a></h1>
+            <nav class="links">
+                <ul>
+                    <li><a asp-area="" asp-controller="PostGroups" asp-action="PostList" asp-route-id="Magazin">Magazin</a></li>
+                    <li><a asp-area="" asp-controller="PostGroups" asp-action="PostList" asp-route-id="Teknoloji">Teknoloji</a></li>
+                    <li><a asp-area="" asp-controller="PostGroups" asp-action="PostList" asp-route-id="Siyaset">Siyaset</a></li>
+                    <li><a asp-area="" asp-controller="PostGroups" asp-action="PostList" asp-route-id="Spor">Spor</a></li>
+                   @* <li><a asp-area="" asp-controller="PostGroups" asp-action="PostList" asp-route-id="Bilim">Bilim</a></li>*@
+                 @*   <li><a asp-area="" asp-controller="PostGroups" asp-action="PostList" asp-route-id="Kurucular">Kurucular</a></li>*@
+                </ul>
+            </nav>
+            <nav class="main">
+                <ul>
+                    <li class="menu">
+                        <a class="fa-user" href="#menu">Menü</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Menu -->
+        <section id="menu">
+
+            <!-- Search -->
+            
+
+            <!-- Links -->
+           
+
+            <!-- Actions -->
+            <section>
+              
+                <partial name="_LoginPartial" />
+            </section>
+
+        </section>
+
+        <!-- Main -->
+        @RenderBody()
+    </div>
+
+    <!-- Scripts -->
+    <script src="~/js/theme/jquery.min.js" src="~/js/theme/jquery.min.js"></script>
+    <script src="~/js/theme/browser.min.js"></script>
+    <script src="~/js/theme/breakpoints.min.js"></script>
+    <script src="~/js/theme/util.js"></script>
+    <script src="~/js/theme/main.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

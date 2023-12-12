@@ -1,0 +1,42 @@
+﻿@model IEnumerable<AciSozluk.Models.Post>
+
+@{
+    ViewData["Title"] = "Anasayfa";
+}
+<div id="main">
+    <h1>Anasayfa</h1>
+
+    <p>
+        <a asp-action="Create">Yeni konu ekle</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PostGroup)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PostGroup.Name)
+                    </td>
+                    <td>
+                        <a asp-action="AddComment" asp-route-id="@item.Id">Yorum yapmak için tıklayın.</a>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
